@@ -3,32 +3,37 @@ import React, { useEffect, Component } from 'react'
 import ReactDOM from 'react-dom'
 import getConfig from 'next/config'
 import fetch from 'isomorphic-unfetch'
-import htmlentities from 'he'
-const showdown = require('showdown')
-var markdown = require( "markdown" ).markdown;
+import Link from 'next/link'
+const ReactMarkdown = require('react-markdown')
+import styled from '@emotion/styled'
+
+
 
 
 
 const projID = ({projData}) => {
-   
-       
-      
-      
-     
-   
+   const [opac, setOpac] = React.useState(0.5)
     return (
+        <ProjectStyled>
         <Box variant="container" py={10}>
             <Flex flexDirection="column" justifyContent="center" alignItems="center">
-                <Image src={publicRuntimeConfig.API_URL + projData.displayImage.url}
-                sx={{width:['100%','80%','50%'], borderRadius: 20, border: 'solid 1px white'}}
+            <Flex alignItems="right" justifyContent="left" textAlign="right"><Text as={"h1"} mb={10}>"{projData.headline}"</Text>     <Text as={'h3'} color="white" opacity={0.5}>{projData.desc}</Text></Flex>
+        
+            <Image src={publicRuntimeConfig.API_URL + projData.displayImage.url}
+                sx={{width:['90%','70%','40%'], borderRadius: 20, border: 'solid 1px white'}}
                 mb={10}></Image>
-            <Box px={100}>
-            <Text as={"h1"}>{projData.headline}</Text>
-            <Text as={'h2'}>{projData.desc}</Text>
-            <Box id="preview"></Box>
+            <Box px={[80,70,100,100,100]}>
+            
+         
+            <Box id="preview"><ReactMarkdown source={projData.longDesc} /></Box>
+            <Flex justifyContent="center">
+                <Box as="h4" mb={100} color="lightyellow" sx={{cursor:"grab", }} opacity={opac} onMouseEnter={() => setOpac(1)} onMouseLeave={() => setOpac(0.5)}><Link href="/" sx={{textDecoration:"none"}}><a>Click Here To Go Back</a></Link></Box>
+            </Flex>
             </Box>
+            
             </Flex>
         </Box>
+        </ProjectStyled>
     )
 
 }
@@ -47,3 +52,14 @@ export async function getServerSideProps(context) {
         },
     }
 }
+
+const ProjectStyled = styled.div`
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+    
+
+
+`

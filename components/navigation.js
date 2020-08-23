@@ -2,10 +2,12 @@ import styled from '@emotion/styled'
 import {Flex, Box} from 'reflexbox'
 import Link from 'next/link'
 import {Image} from 'rebass'
+import {useRouter} from 'next/router'
 
 const Navigation = ({webTools, navigation}) => {
 
-
+    const router = useRouter()
+    console.log(router)
     return (
         <NavStyled>
     <Box variant="container" py={0}width={{xl:'100%', sm:'90%'}}>

@@ -6,7 +6,7 @@ const resume = ({Component}) => {
     return (
         <Box variant="container">
             <Text>
-                Resume
+            
             </Text>
         </Box>
     )

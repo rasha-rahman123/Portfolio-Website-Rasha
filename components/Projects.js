@@ -7,9 +7,9 @@ import { useRouter } from 'next/router'
 import projID from '../pages/projects/[id]'
 
 
-export default function Projector({projects}) {
+export default function Projector({projects, icon}) {
     const router = useRouter()
-    console.log(projects)
+
 
     const { API_URL } = process.env
     let LinkStyle = null;
@@ -34,41 +34,42 @@ export default function Projector({projects}) {
                                 color='white'
                                 bg='#5757b140'
                                 filter='blur(10px)'
-                                sx = {{borderRadius: 10}}   
+                                sx = {{borderRadius: 10, cursor:"none"}}   
                                 py={'5px'}
-                                px={2}>
+                                px={2}
+                               
+                                >
                                 
                                     projects
                                 </Box>
                         </Flex> 
                     
-                        {projects.map(proj => <Box
+                        {projects.map(proj => <ProjectInner><Box onClick={() => router.push(`/projects/${proj.id}`)}
                                 key={proj.id}
                                 color='white'
                                 bg={'#5757b1'+ (10 - (2 * proj.id)).toString() + '0'}
                                 sx = {{borderRadius: 10}}
                                 filter='blur(10px)'
                                 my={2}>
-                            <Flex width="100%" justifyContent="space-between" flexDirection={['column','column','row','row','row']} py={1}>
-                                    <Flex width={['100%','100%','40%']} flexDirection={['column','column','row','row','row']} justifyContent={['center','center', 'left']} textAlign="left" alignItems="center" my={2}>
-                                            <Image src={`${API_URL}` + `${proj.displayImage.url}`}
-                                            sx={{
-                                                width: [ '100%', '20%' ],
-                                                borderRadius: 10,
-                                            }} mx={2} px={2}mb={[2,2,0,0,0]}>
-                                            </Image>
-                                        <Text fontSize={2} fontWeight={'bold'}>{proj.headline}</Text>
+                            <Flex width="100%" justifyContent="space-between" flexDirection={['row','row','row','row','row']} py={1}>
+                                    <Flex width={['100%','100%','60%']} flexDirection={['row','row','row','row','row']} justifyContent={['center','center', 'left']} textAlign="left" alignItems="center" my={2}>
+                                        <Image display={['none','none','inline','inline','inline']} src={`${API_URL}` + `${proj.displayImage.url}`}
+                                                sx={{
+                                                    width: [ '100%', '20%' ],
+                                                    borderRadius: 10,
+                                                }} mx={2} px={2}mb={[2,2,0,0,0]}>
+                                                </Image>
+                                        <Text fontSize={2} px={10} fontWeight={'bold'}>{proj.headline}</Text>
                                     </Flex>
                                 
 
                                     <Flex flexDirection={['row','row','row','row','row']} justifyContent="space-around" alignItems="center" mx={2}>
-                                       <Flex width="50%" justifyContent="center" textAlign="center"><Box as="a" onMouseEnter={() => setHover(true)} onClick={() => router.push(`/projects/${proj.id}`)}><Text><LinkStyle>[process]</LinkStyle></Text></Box></Flex>
-                                       <Flex width="50%" justifyContent="center" textAlign="center"><Box ml={2}><Text>[demo]</Text></Box></Flex>
+                                       <Flex justifyContent="center" textAlign="center" alignItems="center"><Box as="a" onMouseEnter={() => setHover(true)} ><Image src={API_URL + icon.icon.url} opacity={linkHover ? (10 - (2 * proj.id)).toString() + '0%' : 1} sx={{width:'32px'}}></Image></Box></Flex>
                                     </Flex>
 
 
                             </Flex>
-                        </Box> )}
+                        </Box></ProjectInner> )}
                          
                     </Flex>
             </Box>
@@ -85,9 +86,14 @@ const ProjectStyled = styled.div`
 
 `
 const ProjectInner = styled.div`
-    background-color: #37516580;
-    border-radius: 3px;
-    box-shadow: 1px 1px 10px 1px #00000020;
+    opacity: 0.9;
+    transition: opacity 300ms ease-in-out;
+    transition: transform 300ms ease-in-out;
+    :hover {
+        transform: translateY(-2px);
+        opacity: 1;
+        cursor: pointer;
+    }
     text-align: left;
     img {
         border-radius: 3px;

@@ -1,5 +1,9 @@
-import { Global, css } from '@emotion/core'
+import { Global, css, keyframes } from '@emotion/core'
 
+const bgMove = keyframes`
+0% {background: #567ECF;}
+100% {background: #1a1aab; height: 100%;}
+`
 const GlobalStyles = () => (
     <>
         <Global styles={css`
@@ -12,10 +16,14 @@ const GlobalStyles = () => (
 
             body {
                 margin: 0;
-                background-image: linear-gradient(130deg, #1a1aab,  #253840);
+                height:100%;
+                padding:0;
+                background: #1C1CAC;
+                animation: ${bgMove} 3000ms ease-in-out forwards;
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 color: white;
+                padding-bottom:30px;
             }
 
             article,

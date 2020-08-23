@@ -5,7 +5,7 @@ import Projector from '../components/Projects'
 import styled from '@emotion/styled'
 import { jsx, css, keyframes } from '@emotion/core'
 
-export default function Home({blogs, webTools, projects}) {
+export default function Home({blogs, webTools, projects, icon}) {
   const[showCurrents, setCurrentShow] = React.useState(false);
   const[movX, setMovX] = React.useState();
   const[movY, setMovY] = React.useState();
@@ -20,23 +20,23 @@ export default function Home({blogs, webTools, projects}) {
     <Box variant="container" mt={20}>
 <Flex justifyContent="center" alignItems="center">
       <Head>
-        <title>Create Next App</title>
+        <title>Rasha's World</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {blogs.map(blogs => (
         <Box onMouseMove={handleMove} key={blogs.id}>
-          <h1 style={{color: showCurrents ? 'lightblue' : 'white'}} onMouseUp={()=> {
+          <Box as={'h1'} style={{color: showCurrents ? 'lightblue' : '', transform: showCurrents ? 'scale(1.05) translateY(-5px)' : ''}} onMouseUp={()=> {
             {!showCurrents ? setCurrentShow(!showCurrents) : setCurrentShow()};
           }}>
             {blogs.Title}
-          </h1>
+          </Box>
           <p  style={{visibility: showCurrents ? 'visible' : 'hidden', display: showCurrents ? 'inline' : 'none'}}>{blogs.subtitle}</p>
           
             
           </Box>
       ))}
 </Flex>
-<Projector projects={projects}/>
+<Projector projects={projects} icon={icon}/>
     </Box>
     </IndexSyled>
   )
@@ -59,17 +59,18 @@ const IndexSyled = styled.div`
 
     h1 {
         text-decoration: none;
-        transition: transform 5s ease-in-out;
-        transform: scale(1);
-        transition: text-shadow 1s  ease-in-out; 
-    }
-    
-    p {
-      ${Home.showCurrents ? 'animation: ${textDrop} 300ms forwards ease-in' : 'animation: none'}
+        transition: transform 300ms ease-in-out ;
+        -webkit-transition: color 300ms ease-in-out, transform 300ms ease-in-out ;
+        color: white;
+        cursor: pointer;
     }
     h1:hover {
-        cursor: grab; 
-        transform: scale(1.0) translateY(-2px);
+      color: lightblue;
+      transform: scale(1.05) translateY(-5px); 
+    
+    }
+    p {
+      transition: transform 300ms ease-in-out;
 
     }
     h1:focus{

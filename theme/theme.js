@@ -13,7 +13,7 @@ export default {
       secondary: '#5757b1',
       gradient: 'linear-gradient(190deg, #253840, #1a1aab)'
     },
-    
+   
     variants: {
         container: {
             maxWidth: 960,
