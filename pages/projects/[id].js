@@ -12,6 +12,7 @@ import styled from '@emotion/styled'
 
 
 const projID = ({projData}) => {
+    console.log(projData)
    const [opac, setOpac] = React.useState(0.5)
     return (
         <ProjectStyled>
@@ -26,12 +27,20 @@ const projID = ({projData}) => {
             
          
             <Box id="preview"><ReactMarkdown source={projData.longDesc} /></Box>
-            <Flex justifyContent="center">
-                <Box as="h4" mb={100} color="lightyellow" sx={{cursor:"grab", }} opacity={opac} onMouseEnter={() => setOpac(1)} onMouseLeave={() => setOpac(0.5)}><Link href="/" sx={{textDecoration:"none"}}><a>Click Here To Go Back</a></Link></Box>
-            </Flex>
+        
+           
             </Box>
-            
+            <Flex justifyContent="center" flexDirection="column" mt={1} alignItems="center" height="100%">
+                <hr />
+                      <Text fontWeight="bold" opacity={0.9} fontStyle="italic" mb={2}>Technologies Used:</Text>
+            {projData.technologies.map(tech => 
+                <Box>
+                    <Text>{tech.Title}</Text>
+                </Box>)}
+                <Box as="h4" color="lightyellow" mt={2} sx={{cursor:"grab", }} opacity={opac} onMouseEnter={() => setOpac(1)} onMouseLeave={() => setOpac(0.5)}><Link href="/" sx={{textDecoration:"none"}}><a>Click Here To Go Back</a></Link></Box>
             </Flex>
+            </Flex>
+            
         </Box>
         </ProjectStyled>
     )

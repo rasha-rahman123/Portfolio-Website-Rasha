@@ -8,6 +8,7 @@ const Navigation = ({webTools, navigation}) => {
 
     const router = useRouter()
     console.log(router)
+    const path = router.pathname
     return (
         <NavStyled>
     <Box variant="container" py={0}width={{xl:'100%', sm:'90%'}}>
@@ -29,7 +30,7 @@ const Navigation = ({webTools, navigation}) => {
             <Flex justifyContent="space-evenly" flexDirection='row'>
             {navigation.map(nav => (
       
-                <Link key={nav.id} href={nav.Link}><a><Box mx={1}>{nav.Label}</Box></a></Link>
+                <Link key={nav.id} href={nav.Link}><a className={path === nav.Link ? 'active' : 'inactive'}><Box mx={1}>{nav.Label}</Box></a></Link>
     
                 
           
@@ -52,8 +53,8 @@ const NavStyled = styled.div`
         transition: transform 300ms ease-in-out;
         transition: text-shadow;
     }
-    a:active {
-        color: purple;
+    .active {
+        color: darkgoldenrod;
     }
     a:hover {
         color: gold;
