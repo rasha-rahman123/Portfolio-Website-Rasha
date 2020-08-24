@@ -24,6 +24,7 @@ function Footer() {
   
 
   const FooterStyled = styled.footer`
+  cursor: default;
   position:relative;
    bottom:0;
    width:100%;
@@ -36,7 +37,7 @@ function Footer() {
   a {
       text-decoration: none;
       font-size: smaller;
-      color: white;
+      color: #DAF7DC;
       
       transition: transform 300ms;
   }

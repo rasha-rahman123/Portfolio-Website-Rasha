@@ -20,6 +20,9 @@ const Navigation = ({webTools, navigation}) => {
                         <Image
                         src="/avatar.png"
                         variant='avatar'
+                        sx={{
+                            border: 'solid 3px #DAF7DC'
+                        }}
                         />
                         <Box key={webTools.id} as="h4">{webTools.websiteTitle}</Box>
                 </Flex>
@@ -49,17 +52,20 @@ const NavStyled = styled.div`
 
     a {
         text-decoration: none;
-        color: white;
+        color: #DAF7DC;
         transition: transform 300ms ease-in-out;
         transition: text-shadow;
+        transition: color 300ms ease-in-out;
+        transition: border-bottom 100ms ease-in-out;
     }
     .active {
-        color: darkgoldenrod;
+        color: #9EE493;
+        border-bottom: 3px solid #DAF7DC;
     }
     a:hover {
-        color: gold;
+        color: #DAF7DC;
         transform: translateY(-2px);
-        text-shadow: 2px 2px 1px darkgoldenrod;
+        text-shadow: 2px 2px 1px #9EE493;
         
     }
 `

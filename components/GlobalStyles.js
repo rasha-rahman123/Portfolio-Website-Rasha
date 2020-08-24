@@ -1,14 +1,17 @@
 import { Global, css, keyframes } from '@emotion/core'
 
 
+
 const GlobalStyles = () => (
     <>
         <Global styles={css`
+            @import url('https://fonts.googleapis.com/css?family=Inter"');
             html {
                 line-height: 1.15; /* 1 */
                 -ms-text-size-adjust: 100%; /* 2 */
                 -webkit-text-size-adjust: 100%; /* 2 */
                 text-transform: lowercase;
+                font-family: 'Inter';
             }
 
             body {
@@ -16,9 +19,10 @@ const GlobalStyles = () => (
                 height:100%;
                 padding:0;
                 background: linear-gradient(230deg,#253840,#1a1aab);
+                
                 background-repeat: no-repeat;
                 background-attachment: fixed;
-                color: white;
+                color: #DAF7DC;
                 padding-bottom:30px;
             }
 
@@ -371,6 +375,9 @@ const GlobalStyles = () => (
                 width: 100%;
                 margin: 0 auto;
                 padding: 30px;
+            }
+            .opacityImage:hover {
+                opacity: 1;
             }
         `}/>
     </>

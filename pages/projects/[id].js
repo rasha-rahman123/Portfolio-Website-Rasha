@@ -18,10 +18,10 @@ const projID = ({projData}) => {
         <ProjectStyled>
         <Box variant="container" py={10}>
             <Flex flexDirection="column" justifyContent="center" alignItems="center">
-            <Flex alignItems="right" justifyContent="left" textAlign="right"><Text as={"h1"} mb={10}>"{projData.headline}"</Text>     <Text as={'h3'} color="white" opacity={0.5}>{projData.desc}</Text></Flex>
+            <Flex alignItems="right" justifyContent="left" textAlign="right"><Text as={"h1"} mb={10}>"{projData.headline}"</Text>     <Text as={'h3'} color="#DAF7DC" opacity={0.5}>{projData.desc}</Text></Flex>
         
             <Image src={publicRuntimeConfig.API_URL + projData.displayImage.url}
-                sx={{width:['90%','70%','40%'], borderRadius: 20, border: 'solid 1px white'}}
+                sx={{width:['90%','70%','40%'], borderRadius: 20, border: 'solid 1px #DAF7DC'}}
                 mb={10}></Image>
             <Box px={[80,70,100,100,100]}>
             
@@ -65,7 +65,7 @@ export async function getServerSideProps(context) {
 const ProjectStyled = styled.div`
     a {
         text-decoration: none;
-        color: white;
+        color: #DAF7DC;
     }
 
     
