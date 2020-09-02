@@ -6,23 +6,57 @@ import fetch from 'isomorphic-unfetch'
 import getConfig from 'next/config'
 import theme from '../theme/theme'
 import {Flex, Box} from 'rebass'
+import { DefaultSeo } from 'next-seo'
 
+import SEO from '../next-seo.config'
+import { AnimationFeature, MotionConfig, AnimatePresence} from 'framer-motion'
+import { m as motion} from 'framer-motion'
+import { useRouter} from 'next/router'
 
 
 function MyApp({ Component, pageProps, webTools, navigation, projects, icon}) {
-  return(
-     <>
+
+  const router = useRouter()
+  return(  <MotionConfig features={[AnimationFeature]}>
+     <motion.div initial="bodyInitial" animate="bodyAnimate" variants = {{
+       bodyInitial: {
+      
+       },
+       bodyAnimate: {
+
+       }
+     }}
+
+     >
+     <DefaultSeo {...SEO} />
     <ThemeProvider theme={theme}>
+    
       <Box height="100%">
         <Flex flexDirection="column" justifyContent="space-between" alignItems="right">
           <GlobalStyles />
           <Header webTools={webTools} navigation={navigation}/>
-          <Component {...pageProps} projects={projects} icon={icon}/>
+        
+            <motion.div key={router.route} initial="pageInitial" animate="pageAnimate" variants ={{
+              pageInitial: {
+                opacity: 0,
+                scale: 0
+              },
+              pageAnimate: {
+                opacity: 1,
+                scale: 1
+
+              }
+            }}>
+            <Component {...pageProps} projects={projects} icon={icon}/>
+            </motion.div>
+ 
+          
           <Footer />
       </Flex>
       </Box>
+
     </ThemeProvider>
-  </>)
+  </motion.div>         </MotionConfig>)
 }
 
 export default MyApp
@@ -37,7 +71,7 @@ MyApp.getInitialProps = async () => {
   const navdata = await navres.json()
   const projres = await fetch(`${publicRuntimeConfig.API_URL}/projects`)
   const projdata = await projres.json()
-  const iconres = await fetch(`${publicRuntimeConfig.API_URL}/r-arrow-icon`)
+  const iconres = await fetch(`${publicRuntimeConfig.API_URL}/icons`)
   const icondata = await iconres.json()
 
   return {

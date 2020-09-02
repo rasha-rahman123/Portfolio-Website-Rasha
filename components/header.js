@@ -3,7 +3,7 @@ import {Flex, Box} from 'reflexbox'
 import Navigation from './navigation'
 
 function Header({webTools, navigation}) {
-    console.log(webTools)
+   
     return (
         <HeaderStyled>
            <Box>

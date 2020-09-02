@@ -7,8 +7,9 @@ import {useRouter} from 'next/router'
 const Navigation = ({webTools, navigation}) => {
 
     const router = useRouter()
-    console.log(router)
     const path = router.pathname
+
+
     return (
         <NavStyled>
     <Box variant="container" py={0}width={{xl:'100%', sm:'90%'}}>
@@ -33,7 +34,10 @@ const Navigation = ({webTools, navigation}) => {
             <Flex justifyContent="space-evenly" flexDirection='row'>
             {navigation.map(nav => (
       
-                <Link key={nav.id} href={nav.Link}><a className={path === nav.Link ? 'active' : 'inactive'}><Box mx={1}>{nav.Label}</Box></a></Link>
+<Box mx={1} sx={{cursor: 'pointer'}}  as={'a'} onClick={() => {
+
+    nav.Link === '' ? router.replace(`/`) : router.replace(`${nav.Link}`)
+}}  className={path === '/' + nav.Link ? 'active' : 'inactive'}>{nav.Label}</Box>
     
                 
           
@@ -52,20 +56,20 @@ const NavStyled = styled.div`
 
     a {
         text-decoration: none;
-        color: #DAF7DC;
+        color: #06D6A0;
         transition: transform 300ms ease-in-out;
         transition: text-shadow;
         transition: color 300ms ease-in-out;
         transition: border-bottom 100ms ease-in-out;
     }
     .active {
-        color: #9EE493;
-        border-bottom: 3px solid #DAF7DC;
+        color: #FFD166;
+        border-bottom: 3px solid #FFD166;
     }
     a:hover {
-        color: #DAF7DC;
+        color: #FFD166;
         transform: translateY(-2px);
-        text-shadow: 2px 2px 1px #9EE493;
+        text-shadow: 2px 2px 1px #06D6A0;
         
     }
 `

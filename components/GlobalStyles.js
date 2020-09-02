@@ -7,22 +7,44 @@ const GlobalStyles = () => (
         <Global styles={css`
             @import url('https://fonts.googleapis.com/css?family=Inter"');
             html {
+           
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+
+
+
                 line-height: 1.15; /* 1 */
                 -ms-text-size-adjust: 100%; /* 2 */
                 -webkit-text-size-adjust: 100%; /* 2 */
                 text-transform: lowercase;
                 font-family: 'Inter';
+                font-size: calc(0.5em + 1vw)
             }
-
+            html::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
+            @keyframes colorSwitch {
+                100%{color: #FFD166};
+            }
             body {
+                
                 margin: 0;
                 height:100%;
                 padding:0;
-                background: linear-gradient(230deg,#253840,#1a1aab);
+                background: linear-gradient(230deg,#118AB2,#073B4C);
                 
                 background-repeat: no-repeat;
                 background-attachment: fixed;
-                color: #DAF7DC;
+                color: #06D6A0;
+                animation-name: colorSwitch;
+ animation-duration: 4s; /* or: Xms */
+ animation-iteration-count: 10;
+ animation-direction: alternate; /* or: normal */
+ animation-timing-function: ease-out; /* or: ease, ease-in, ease-in-out, linear, cubic-bezier(x1, y1, x2, y2) */
+ animation-fill-mode: forwards; /* or: backwards, both, none */
+ animation-delay: 2s; /* or
                 padding-bottom:30px;
             }
 
@@ -379,6 +401,19 @@ const GlobalStyles = () => (
             .opacityImage:hover {
                 opacity: 1;
             }
+            body{width: 100vw};
+			span.cls_002{font-family:Arial,serif;font-size:20.3px;color:rgb(3,168,244);font-weight:bold;font-style:normal;text-decoration: none}
+			div.cls_002{font-family:Arial,serif;font-size:20.3px;color:rgb(3,168,244);font-weight:bold;font-style:normal;text-decoration: none}
+			span.cls_003{font-family:Arial,serif;font-size:6.8px;color:rgb(68,68,68);font-weight:normal;font-style:normal;text-decoration: none}
+			div.cls_003{font-family:Arial,serif;font-size:6.8px;color:rgb(68,68,68);font-weight:normal;font-style:normal;text-decoration: none}
+			span.cls_004{font-family:Arial,serif;font-size:7.9px;color:rgb(68,68,68);font-weight:normal;font-style:normal;text-decoration: none}
+			div.cls_004{font-family:Arial,serif;font-size:7.9px;color:rgb(68,68,68);font-weight:normal;font-style:normal;text-decoration: none}
+			span.cls_005{font-family:Arial,serif;font-size:6.8px;color:rgb(3,168,244);font-weight:bold;font-style:normal;text-decoration: none}
+			div.cls_005{font-family:Arial,serif;font-size:6.8px;color:rgb(3,168,244);font-weight:bold;font-style:normal;text-decoration: none}
+			span.cls_006{font-family:Arial,serif;font-size:9.0px;color:rgb(68,68,68);font-weight:bold;font-style:normal;text-decoration: none}
+			div.cls_006{font-family:Arial,serif;font-size:9.0px;color:rgb(68,68,68);font-weight:bold;font-style:normal;text-decoration: none}
+			span.cls_007{font-family:Arial,serif;font-size:6.8px;color:rgb(68,68,68);font-weight:bold;font-style:normal;text-decoration: none}
+			div.cls_007{font-family:Arial,serif;font-size:6.8px;color:rgb(68,68,68);font-weight:bold;font-style:normal;text-decoration: none}
         `}/>
     </>
 )

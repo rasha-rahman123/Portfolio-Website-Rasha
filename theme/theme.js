@@ -21,6 +21,9 @@ export default {
             mx: 'auto',
             px: 30
         },
+        opacHover: {
+            transition: 'opacity 300ms ease-in-out'
+        },
         avatar: {
             boxSizing: 'border-box',
             margin: 0,
