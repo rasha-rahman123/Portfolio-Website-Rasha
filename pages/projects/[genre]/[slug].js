@@ -9,24 +9,24 @@ import styled from '@emotion/styled'
 import {NextSeo} from 'next-seo'
 import {useRouter} from 'next/router'
 
-const projID = ({projData}) => {
+const projID = () => {
 
     const router = useRouter()
-    const SEO = {
-        title: `Rasha's ${projData.headline} Project`,
-    description: `Rasha Rahman's project ${projData.headline} is about ${projData.desc}`,
+    // const SEO = {
+    //     title: `Rasha's ${projData.headline} Project`,
+    // description: `Rasha Rahman's project ${projData.headline} is about ${projData.desc}`,
     
-    openGraph: {    
-        title: `Rasha's ${projData.headline} Project`,
-        description: `Rasha Rahman's project ${projData.headline} is about ${projData.desc}`
-    },
-    twitter: {
-        handle: '@raaahhh_sha',
-        site: '@kingkb2400',
-        cardType: 'summary_large_image',
-    },
+    // openGraph: {    
+    //     title: `Rasha's ${projData.headline} Project`,
+    //     description: `Rasha Rahman's project ${projData.headline} is about ${projData.desc}`
+    // },
+    // twitter: {
+    //     handle: '@raaahhh_sha',
+    //     site: '@kingkb2400',
+    //     cardType: 'summary_large_image',
+    // },
 
-    }
+    // }
     const colorArr = [
         '#073B4D',
         '#118AB2',
@@ -38,10 +38,10 @@ const projID = ({projData}) => {
    const [opac, setOpac] = React.useState(0.5)
     return (
         <>
-        <NextSeo {...SEO} />
+        {/* <NextSeo {...SEO} /> */}
         <ProjectStyled>
         <Box variant="container" py={10}>
-            <Flex flexDirection="column" justifyContent="center" alignItems="center">
+            {/* <Flex flexDirection="column" justifyContent="center" alignItems="center">
             <Flex alignItems="right" justifyContent="left" textAlign="right"><Box className="highlight" as={"h1"} mb={10}>"{projData.headline}"</Box>  <Box className="highlight" as={'h3'} color="#DAF7DC">{projData.desc}</Box></Flex>
         
             <Image src={projData.displayImage.url}
@@ -82,7 +82,7 @@ const projID = ({projData}) => {
                 <Box as="h4" color="lightyellow" mt={2} sx={{cursor:"grab", }} opacity={opac} onMouseEnter={() => setOpac(1)} onMouseLeave={() => setOpac(0.5)}><Box onClick={() => router.back()} sx={{textDecoration:"none"}}>Click Here To Go Back</Box></Box>
             </Flex>
             </Flex>
-            
+             */}
         </Box>
         </ProjectStyled>
         </>
@@ -92,18 +92,7 @@ const projID = ({projData}) => {
 
 export default projID;
 
-const { publicRuntimeConfig } = getConfig()
 
-export async function getServerSideProps(context) {
-    const { slug } = context.query;
-    const res = await fetch(`${publicRuntimeConfig.API_URL}/projects?slug=${slug}`)
-    const data = await res.json()
-    return {
-        props: {
-            projData: data[0]
-        },
-    }
-}
 
 export const ProjectStyled = styled.div`
     a {

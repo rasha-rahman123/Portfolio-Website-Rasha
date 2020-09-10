@@ -10,7 +10,6 @@ const Navigation = ({webTools, navigation}) => {
     const router = useRouter()
     const path = router.pathname
     let { nav } = attributes;
-    console.log(nav)
 
     return (
         <NavStyled>

@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import {Flex, Box, Text, Link} from 'rebass'
 
 function Footer() {
-    console.log(socialLinks)
+
     return (
         <FooterStyled>
            <Box my={10}>

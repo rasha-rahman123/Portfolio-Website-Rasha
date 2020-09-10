@@ -9,10 +9,10 @@ import styled from '@emotion/styled'
 const resume = ({Component, resume, resumeLink}) => {
 	const { API_URL } = process.env
   const router = useRouter()
-  const resu = resume.reduce((acc, resume) => {
-    console.log(resumeLink)
-	  return { ...acc, [resume.id]: resume};
-}, {})
+//   const resu = resume.reduce((acc, resume) => {
+//     console.log(resumeLink)
+// 	  return { ...acc, [resume.id]: resume};
+// }, {})
 
   const SEO = {
     title: `Rasha's Resume`,
@@ -29,14 +29,9 @@ openGraph: {
           <NextSeo {...SEO} />
           <ResumeStyled>
           <Box variant="container">
-           <Flex flexDirection={'column'}>
-              {/* Row */}
+           {/* <Flex flexDirection={'column'}>
+              Row
             <Flex flexDirection={'row'} justifyContent="center" alignItems="center" textAlign="center">
-              {/* <Box p={3} width={1/3}>
-                <Box as={'h1'}>
-
-                </Box>
-              </Box> */}
               <Box p={3} width={1}>
                 <Box as={'h5'}>
             <Link href={API_URL + resumeLink.ResumeFile.url}>
@@ -45,15 +40,15 @@ openGraph: {
             	</a>
 	</Link>
 	    </Box>
-              </Box>
+              </Box> */}
               {/* <Box p={3} width={1/3}>
                 <Box as={'h2'}>
            
                 </Box>
               </Box> */}
-            </Flex>
+            {/* </Flex> */}
               {/* Row */}
-              <Flex flexDirection={'column'} textAlign="left">
+              {/* <Flex flexDirection={'column'} textAlign="left">
               <Box px={3} py={1}>
                     <Box sx={{
                       textDecoration: 'underline'
@@ -72,9 +67,9 @@ openGraph: {
                           </Box>
                     </Flex>)}
               </Box>
-            </Flex>
+            </Flex> */}
              {/* Row */}
-             <Flex flexDirection={'column'} textAlign="left">
+             {/* <Flex flexDirection={'column'} textAlign="left">
              <Box px={3} py={1}>
                     <Box sx={{
                       textDecoration: 'underline'
@@ -104,9 +99,9 @@ openGraph: {
                     
               </Box>
               
-            </Flex>
+            </Flex> */}
               {/* Row */}
-              <Flex flexDirection={'column'}>
+              {/* <Flex flexDirection={'column'}>
               <Box px={3} py={1}>
                     <Box sx={{
                       textDecoration: 'underline'
@@ -140,7 +135,7 @@ openGraph: {
               </Box>
             </Flex>
             <Box as="h4" color="lightyellow" opacity={0.5} mt={2} sx={{cursor:"pointer", ':hover': {opacity: 1} }}><Box onClick={() => router.back()} sx={{textDecoration:"none"}}>Click Here To Go Back</Box></Box>
-           </Flex>
+           </Flex> */}
             
           </Box>   
           </ResumeStyled>
@@ -162,18 +157,3 @@ a:hover {
 `
 export default resume;
 
-export async function getServerSideProps(context) {
-  const { API_URL } = process.env
-  const res = await fetch(`${API_URL}/resumes`)
-  const data = await res.json()
-  const resume = await fetch(`${API_URL}/resume-file`)
-  const resumedata = await resume.json()
-
-
-  return {
-    props: {
-      resume: data,
-	resumeLink: resumedata
-    }
-  }
-}

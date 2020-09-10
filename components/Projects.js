@@ -86,7 +86,7 @@ export default function Projector({projects, icon, isToggled, setToggle}) {
                                 sx = {{borderRadius: 5, border: '2px inset #DAF7DC' + (100 - (10 * proj.id)).toString(), boxShadow: '1px 1px 10px #00000020'}}
                                 filter='blur(10px)'
                                 my={2}>
-                                    {console.log(proj)}
+                        
                                     <Flex width={['100%','100%','100%']} flexDirection={['row']} justifyContent={['center','space-between', 'space-between']} textAlign="left" alignItems="center"flexGrow={1}>
                                         <Image display={['none','none','inline','inline','inline']} src={`${proj.displayImage.url}`}
                                                 sx={{
