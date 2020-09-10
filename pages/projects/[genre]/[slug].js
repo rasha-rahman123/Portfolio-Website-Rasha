@@ -9,10 +9,6 @@ import styled from '@emotion/styled'
 import {NextSeo} from 'next-seo'
 import {useRouter} from 'next/router'
 
-
-
-
-
 const projID = ({projData}) => {
 
     const router = useRouter()
@@ -32,11 +28,11 @@ const projID = ({projData}) => {
 
     }
     const colorArr = [
-        '#073B4C',
+        '#073B4D',
         '#118AB2',
-        '#EF476Fq',
+        '#EF476F',
         '#118AB2',
-        '#073B4C'
+        '#073B4D'
     ]
     
    const [opac, setOpac] = React.useState(0.5)
@@ -48,7 +44,7 @@ const projID = ({projData}) => {
             <Flex flexDirection="column" justifyContent="center" alignItems="center">
             <Flex alignItems="right" justifyContent="left" textAlign="right"><Box className="highlight" as={"h1"} mb={10}>"{projData.headline}"</Box>  <Box className="highlight" as={'h3'} color="#DAF7DC">{projData.desc}</Box></Flex>
         
-            <Image src={publicRuntimeConfig.API_URL + projData.displayImage.url}
+            <Image src={projData.displayImage.url}
                 sx={{width:['90%','70%','40%'], borderRadius: 20, border: 'solid 1px #DAF7DC'}}
                 mb={10}></Image>
             <Box px={[10,50,100,100,100]}>

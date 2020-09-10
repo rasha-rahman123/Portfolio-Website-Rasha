@@ -1,0 +1,22 @@
+backend:
+  name: git-gateway
+  branch: master # Branch to update (optional; defaults to master)
+
+media_folder: "public/uploads"
+public_folder: "uploads"
+
+collections:
+  - name: "props" # Used in routes, e.g., /admin/collections/blog
+    label: "Properties" # Used in the UI
+    folder: "content/server" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - label: "nav"
+        name: "nav"
+        widget: list
+        fields:
+          - { label: "Label", name: "label", widget: "string"}
+          - { link: "Link", name: "link", widget: "string"}
+          - {  info: "info", name: 'info', widget: "string"}
+

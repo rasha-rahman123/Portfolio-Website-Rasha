@@ -2,11 +2,18 @@
 import {Flex, Box} from 'reflexbox'
 import {Text} from 'rebass'
 import {NextSeo} from 'next-seo'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+import styled from '@emotion/styled'
 
-const resume = ({Component, resume}) => {
+const resume = ({Component, resume, resumeLink}) => {
+	const { API_URL } = process.env
+  const router = useRouter()
   const resu = resume.reduce((acc, resume) => {
-    return { ...acc, [resume.id]: resume};
+    console.log(resumeLink)
+	  return { ...acc, [resume.id]: resume};
 }, {})
+
   const SEO = {
     title: `Rasha's Resume`,
 description: `Rasha Rahman's resume`,
@@ -20,6 +27,7 @@ openGraph: {
     return (
       <>  
           <NextSeo {...SEO} />
+          <ResumeStyled>
           <Box variant="container">
            <Flex flexDirection={'column'}>
               {/* Row */}
@@ -31,8 +39,12 @@ openGraph: {
               </Box> */}
               <Box p={3} width={1}>
                 <Box as={'h5'}>
-                [click here for pdf version]
-                </Box>
+            <Link href={API_URL + resumeLink.ResumeFile.url}>
+		<a>
+	    		[click here for pdf version]
+            	</a>
+	</Link>
+	    </Box>
               </Box>
               {/* <Box p={3} width={1/3}>
                 <Box as={'h2'}>
@@ -127,25 +139,41 @@ openGraph: {
                    </>)}
               </Box>
             </Flex>
+            <Box as="h4" color="lightyellow" opacity={0.5} mt={2} sx={{cursor:"pointer", ':hover': {opacity: 1} }}><Box onClick={() => router.back()} sx={{textDecoration:"none"}}>Click Here To Go Back</Box></Box>
            </Flex>
             
           </Box>   
+          </ResumeStyled>
       </>
     
     )
 }
 
+const ResumeStyled = styled.div`
+cursor: default;
+}
+a {
+  text-decoration: none;
+  color: #FFD166;
+}
+a:hover {
+  color: #06D6A0;
+}
+`
 export default resume;
 
 export async function getServerSideProps(context) {
   const { API_URL } = process.env
   const res = await fetch(`${API_URL}/resumes`)
   const data = await res.json()
+  const resume = await fetch(`${API_URL}/resume-file`)
+  const resumedata = await resume.json()
 
 
   return {
     props: {
       resume: data,
+	resumeLink: resumedata
     }
   }
 }

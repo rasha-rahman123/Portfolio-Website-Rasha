@@ -24,27 +24,10 @@ export default function Projector({projects, icon, isToggled, setToggle}) {
 
     let filteredRes = projects.filter(j => j.genre.slug !== genreFilter);
 
-    function shuffle(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
-      
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-      
-          // Pick a remaining element...
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex -= 1;
-      
-          // And swap it with the current element.
-          temporaryValue = array[currentIndex];
-          array[currentIndex] = array[randomIndex];
-          array[randomIndex] = temporaryValue;
-        }
-      
-        return array;
-      }
+ 
 
     const { API_URL } = process.env
-    const shuffled = (proj) => { return shuffle(proj)};
+
     let LinkStyle = null;
     const [linkHover, setHover] = React.useState(false)
     if (linkHover) {
@@ -69,6 +52,7 @@ export default function Projector({projects, icon, isToggled, setToggle}) {
             pageAnimate: {
               opacity: 1,
             scale: [0,1.1,1],
+                
               transition: {
                   delay: .4,
                   when: "beforeChildren",
@@ -93,7 +77,7 @@ export default function Projector({projects, icon, isToggled, setToggle}) {
                                 key={proj.id}
                                 onClick={async () => {
                                     await setToggle(!isToggled)
-                   
+                                    
                                 }}
                                 color='#073B4C'
                                 width={['100%', '100%', '400px']}
@@ -102,9 +86,9 @@ export default function Projector({projects, icon, isToggled, setToggle}) {
                                 sx = {{borderRadius: 5, border: '2px inset #DAF7DC' + (100 - (10 * proj.id)).toString(), boxShadow: '1px 1px 10px #00000020'}}
                                 filter='blur(10px)'
                                 my={2}>
-                          
+                                    {console.log(proj)}
                                     <Flex width={['100%','100%','100%']} flexDirection={['row']} justifyContent={['center','space-between', 'space-between']} textAlign="left" alignItems="center"flexGrow={1}>
-                                        <Image display={['none','none','inline','inline','inline']} src={`${API_URL}` + `${proj.displayImage.url}`}
+                                        <Image display={['none','none','inline','inline','inline']} src={`${proj.displayImage.url}`}
                                                 sx={{
                                                     width: [ '90%', '5%' ],
                                                     borderRadius: 10

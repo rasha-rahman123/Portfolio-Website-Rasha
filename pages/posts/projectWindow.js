@@ -35,20 +35,22 @@ const ProjectWindow = ({id, pathname, propData}) => {
     return (
         <>  {!!id && <>
         <ProjectStyled>
-        <Box variant="container" py={10}>
+        <Box variant="container">
             <Flex flexDirection="column" justifyContent="center" textAlign="center" >
             <Box  as={"h1"} mb={10}>"{result[id].headline}"</Box>
-            <Flex alignItems="center" justifyContent="center" textAlign="center"> <br/>    <Text as={'h3'}  mb={10} color="#DAF7DC" opacity={0.5}>{result[id].desc}</Text></Flex>
-          <Image src={publicRuntimeConfig.API_URL + result[id].displayImage.url}
+            <Flex alignItems="center" justifyContent="center" textAlign="center"> <br/>    <Text as={'h3'}  mb={10} color="#DAF7DC" opacity={0.5}>{result[id].desc}</Text>
+	
+          <Image src={result[id].displayImage.url}
                 sx={{width:['90%','100%','100%'], borderRadius: 20, border: 'solid 1px #DAF7DC'}}
-                mb={10}></Image> 
+                m={10}></Image> 
+	</Flex>
            
         
            <Flex></Flex>
             <Box px={[10,10,30]}>
             
          
-            <Box id="preview" fontSize={'0.8em'}><ReactMarkdown source={result[id].longDesc.substring(0,120)} />... <Link href={`/projects/${result[id].genre.slug}/${result[id].slug}`}><a>Read More about <span style={{textDecoration: 'underline', color: '#DAF7DC'}}>{result[id].headline}</span> by clicking here</a></Link></Box>
+            <Box id="preview" fontSize={'0.8em'}><ReactMarkdown source={result[id].longDesc.substring(0,250)} />... <Link href={`/projects/${result[id].genre.slug}/${result[id].slug}`}><a>Read More about <span style={{textDecoration: 'underline', color: '#DAF7DC'}}>{result[id].headline}</span> by clicking here</a></Link></Box>
         
            
             </Box>

@@ -2,7 +2,6 @@ const path = require('path')
 
 require('dotenv').config()
 module.exports = {
-
     env: {
         API_URL: process.env.API_URL
     },
@@ -14,7 +13,15 @@ module.exports = {
             'components')
             config.resolve.alias['public'] = path.join(__dirname, 
                 'public')
+                config.module.rules.push(
+                    {
+                        test: /\.md$/,
+                        loader: 'frontmatter-markdown-loader',
+                        options: { mode: ['react-component'] }
+                    }
+                )
 
                 return config
     }
 }
+

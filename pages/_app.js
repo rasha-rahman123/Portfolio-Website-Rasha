@@ -7,17 +7,18 @@ import getConfig from 'next/config'
 import theme from '../theme/theme'
 import {Flex, Box} from 'rebass'
 import { DefaultSeo } from 'next-seo'
-
 import SEO from '../next-seo.config'
 import { AnimationFeature, MotionConfig, AnimatePresence} from 'framer-motion'
 import { m as motion} from 'framer-motion'
 import { useRouter} from 'next/router'
+import { useEffect } from 'react'
 
 
 function MyApp({ Component, pageProps, webTools, navigation, projects, icon}) {
 
   const router = useRouter()
-  return(  <MotionConfig features={[AnimationFeature]}>
+
+  return(  <> <MotionConfig features={[AnimationFeature]}>
      <motion.div initial="bodyInitial" animate="bodyAnimate" variants = {{
        bodyInitial: {
       
@@ -56,7 +57,7 @@ function MyApp({ Component, pageProps, webTools, navigation, projects, icon}) {
       </Box>
 
     </ThemeProvider>
-  </motion.div>         </MotionConfig>)
+  </motion.div>         </MotionConfig></>)
 }
 
 export default MyApp

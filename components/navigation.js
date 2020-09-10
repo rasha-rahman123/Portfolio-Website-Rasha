@@ -3,12 +3,14 @@ import {Flex, Box} from 'reflexbox'
 import Link from 'next/link'
 import {Image} from 'rebass'
 import {useRouter} from 'next/router'
+import {attributes, react as HomeContent } from '../content/server/properties.md'
 
 const Navigation = ({webTools, navigation}) => {
 
     const router = useRouter()
     const path = router.pathname
-
+    let { nav } = attributes;
+    console.log(nav)
 
     return (
         <NavStyled>
@@ -32,12 +34,9 @@ const Navigation = ({webTools, navigation}) => {
     
             <Box>
             <Flex justifyContent="space-evenly" flexDirection='row'>
-            {navigation.map(nav => (
+            {nav.map(nav => (
       
-<Box mx={1} sx={{cursor: 'pointer'}}  as={'a'} onClick={() => {
-
-    nav.Link === '' ? router.replace(`/`) : router.replace(`${nav.Link}`)
-}}  className={path === '/' + nav.Link ? 'active' : 'inactive'}>{nav.Label}</Box>
+<Link href={nav.link}><a  mx={1} sx={{cursor: 'pointer'}}  className={path === nav.link ? 'active' : 'inactive'}>{nav.label}</a></Link>
     
                 
           
@@ -61,6 +60,7 @@ const NavStyled = styled.div`
         transition: text-shadow;
         transition: color 300ms ease-in-out;
         transition: border-bottom 100ms ease-in-out;
+        margin-right: 10px;
     }
     .active {
         color: #FFD166;

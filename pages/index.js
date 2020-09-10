@@ -31,7 +31,7 @@ export default function Home({blogs, webTools, projects, icon}) {
   const[modalUp, setModalUp] = React.useState(1);
   const[isToggled, setToggle] = React.useState(false);
   const router = useRouter()
-
+  
   const projectData = projects.filter(x => x === router.query.slug)
   const projData = projectData
     const subtitleTyper = (text) => {
@@ -47,7 +47,6 @@ export default function Home({blogs, webTools, projects, icon}) {
     
   return (
     <IndexSyled>
-   
        <ProjModal router={router} icon={icon} projects={projects} setToggle={setToggle} isToggled={isToggled}>
 </ProjModal>
 
@@ -76,7 +75,7 @@ export default function Home({blogs, webTools, projects, icon}) {
           </Box>
           </motion.div> */}
 
-<MotionConfig features={[AnimationFeature, ExitFeature]}>    
+<MotionConfig features={[AnimationFeature, ExitFeature, GesturesFeature]}>    
 <motion.div key={blogs.id}
                 initial={{opacity: 0, scale: 0}}
                 animate={{opacity: 1, scale: 1, transition: {duration: 0.5, delay: 0}}}
@@ -85,20 +84,33 @@ export default function Home({blogs, webTools, projects, icon}) {
            
                 >
                   <Flex  pt={[0,0,2]} flexDirection="column" justifyContent="space-between" alignItems="center" textAlign="center" > 
-                    <Box height={1/2}>{typeState === blogs.Title.length ? blogs.Title : subtitleTyper(blogs.Title)}</Box>
-                  
-             
-                    <motion.div key={blogs.id}
-                initial={{opacity: 0, scale: 0}}
-                animate={{opacity: 0.7, scale: 1, transition: {duration: 0.5, delay: (blogs.Title.length / 10) + .1}}}
+                       <motion.div key={blogs.Title}
+                initial={{opacity: 0, scale: 0, x: -10000}}
+                animate={{opacity: 1, scale: 1, x: 0, transition: {duration: 0.5}}}
                 exit={{opacity: 0, scale: 0, y: -20}}
-                whileHover={{opacity: 1}}
+                whileHover={{scale: 1.05}}
                 style={{
                   width: '80%'
                 }}
                
            
-                > <Box  height={1/2} py={[3,3,5]}as={"h6"} >{blogs.subtitle}</Box>      </motion.div>  
+                >
+                    <Box height={1/2}>{blogs.Title}</Box>
+	      </motion.div>   
+             
+                    <motion.div key={blogs.id}
+                initial={{opacity: 0, scale: 0}}
+                animate={{opacity: 0.7, scale: 1, transition: {duration: 0.5, delay: 0.4}}}
+                exit={{opacity: 0, scale: 0, y: -20}}
+                whileHover={{opacity: 0.9}}
+                style={{
+                  width: '80%'
+                }}
+               
+           
+                >
+	      <Box  height={1/2} py={[3,3,5]}as={"h6"} >{blogs.subtitle}</Box>     
+	      </motion.div>  
                   </Flex>  </motion.div> </MotionConfig>
     
           

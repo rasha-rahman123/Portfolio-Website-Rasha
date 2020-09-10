@@ -1,18 +1,25 @@
 import styled from '@emotion/styled'
 import {Flex, Box, Text, Link} from 'rebass'
 
-
 function Footer() {
+    console.log(socialLinks)
     return (
         <FooterStyled>
            <Box my={10}>
                <Flex justifyContent="center">
-                    <Text>[ rasha.world 2020 ]</Text>
+                    <Link href="/"><a><Text>[ rasha.world 2020 ]</Text></a></Link>
                 </Flex>
                 <Flex alignItems="center" justifyContent="center" flexDirection="row">
-                    <Link href="http://twitter.com/raaahhh_sha" mx={1}><a>Twitter</a></Link>
-                    <Link href="" mx={1}><a>Github</a></Link>
-                    <Link href="" mx={1}><a>Email</a></Link>
+                    {socialLinks.map(social => <Link
+                    sx={{cursor: 'pointer'}}
+                    onClick={()=> window.open(social.link)}
+                    key={social.id}
+                    mx={1}
+                    ><a>
+                        {social.name}
+                    </a>
+                    </Link>)}
+         
                 </Flex>
            </Box>
 
@@ -21,7 +28,23 @@ function Footer() {
 }
 
 
-  
+  export const socialLinks = [
+                {
+                    id: 1, 
+                    name: 'Twitter', 
+                    link: 'http://twitter.com/raaahhh_sha'
+                },
+                {
+                    id: 2, 
+                    name: 'Github', 
+                    link: 'https://github.com/rashasDemos'
+                },
+                {
+                    id: 3, 
+                    name: 'Email', 
+                    link: 'mailto:rasha.r.rahman@gmail.com'
+                }
+  ]
 
   const FooterStyled = styled.footer`
   cursor: default;
@@ -50,3 +73,4 @@ function Footer() {
 `
   
 export default Footer;
+

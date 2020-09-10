@@ -105,10 +105,8 @@ useEffect(() => {
     color='white'
 
     >
-       <Flex justifyContent="center" alignItems="center" flexDirection="column">
-            <Card mt={[0,0,-40, -80, -140]} sx={{transform: ['scale(1)','scale(1)','scale(0.9)','scale(0.8)','scale(0.7)']}}>
+       <Flex height="100%" width="100%" justifyContent="center" alignItems="center" flexDirection="column">
             {isToggled ? <ProjectWindow id={router.query.projID} propData={projects} pathname={router.pathname} /> : <></>}
-            </Card>
         </Flex> 
   </Box>
   
