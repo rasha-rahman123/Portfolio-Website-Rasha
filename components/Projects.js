@@ -22,7 +22,7 @@ export default function Projector({projects, icon, isToggled, setToggle}) {
 
     const [genreFilter, setGenre] = React.useState(['web-dev', 'psychology']);
 
-    let filteredRes = projects.filter(j => j.genre.slug !== genreFilter);
+    // let filteredRes = projects.filter(j => j.genre.slug !== genreFilter);
 
  
 
@@ -43,7 +43,7 @@ export default function Projector({projects, icon, isToggled, setToggle}) {
     return (
         <ProjectStyled><Flex justifyContent="center" alignItems="center" textAlign="center">
             <Box opacity="1" variant="roundedContainer"  flexGrow={1}>
-                
+{/*                 
             <motion.div initial="pageInitial" animate="pageAnimate" variants ={{
             pageInitial: {
               opacity: 0,
@@ -136,7 +136,7 @@ export default function Projector({projects, icon, isToggled, setToggle}) {
                         </Box></a></Link></ProjectInner> )}
                          
                     </Flex>
-                    </motion.div>
+                    </motion.div> */}
             </Box>
             </Flex>
         </ProjectStyled>

@@ -25,13 +25,13 @@ const customStylesModal = {
 };
 
 
-export default function Home({blogs, webTools, projects, icon}) {
+export default function Home({ webTools, projects, icon}) {
   const[showCurrents, setCurrentShow] = React.useState(false);
   const[typeState, setTypeState] = React.useState(0);
   const[modalUp, setModalUp] = React.useState(1);
   const[isToggled, setToggle] = React.useState(false);
   const router = useRouter()
-  
+  const blogs = []
   const projectData = projects.filter(x => x === router.query.slug)
   const projData = projectData
     const subtitleTyper = (text) => {
@@ -176,21 +176,3 @@ const IndexSyled = styled.div`
     }
    
 `
-export async function getServerSideProps(context) {
-  const { API_URL } = process.env
-  const res = await fetch(`${API_URL}/journals`)
-  const data = await res.json()
-  const wtres = await fetch(`${API_URL}/web-tools`)
-  const wtdata = await wtres.json()
-  const projres = await fetch(`${API_URL}/projects`)
-  const projdata = await projres.json()
-
-
-  return {
-    props: {
-      blogs: data,
-      webTools: wtdata,
-      projects: projdata
-    }
-  }
-}

@@ -14,10 +14,10 @@ import { useRouter} from 'next/router'
 import { useEffect } from 'react'
 
 
-function MyApp({ Component, pageProps, webTools, navigation, projects, icon}) {
+function MyApp({ Component, pageProps}) {
 
   const router = useRouter()
-
+  const dummy = [1,2,3,4,5]
   return(  <> <MotionConfig features={[AnimationFeature]}>
      <motion.div initial="bodyInitial" animate="bodyAnimate" variants = {{
        bodyInitial: {
@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps, webTools, navigation, projects, icon}) {
       <Box height="100%">
         <Flex flexDirection="column" justifyContent="space-between" alignItems="right">
           <GlobalStyles />
-          <Header webTools={webTools} navigation={navigation}/>
+          <Header webTools={dummy} navigation={dummy}/>
         
             <motion.div key={router.route} initial="pageInitial" animate="pageAnimate" variants ={{
               pageInitial: {
@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps, webTools, navigation, projects, icon}) {
 
               }
             }}>
-            <Component {...pageProps} projects={projects} icon={icon}/>
+            <Component {...pageProps} projects={dummy} icon={dummy}/>
             </motion.div>
  
           
@@ -63,23 +63,23 @@ function MyApp({ Component, pageProps, webTools, navigation, projects, icon}) {
 export default MyApp
 const {publicRuntimeConfig} = getConfig()
 
-MyApp.getInitialProps = async () => {
-  const res = await fetch(`${publicRuntimeConfig.API_URL}/journals`)
-  const data = await res.json()
-  const wtres = await fetch(`${publicRuntimeConfig.API_URL}/web-tools`)
-  const wtdata = await wtres.json()
-  const navres = await fetch(`${publicRuntimeConfig.API_URL}/navigations`)
-  const navdata = await navres.json()
-  const projres = await fetch(`${publicRuntimeConfig.API_URL}/projects`)
-  const projdata = await projres.json()
-  const iconres = await fetch(`${publicRuntimeConfig.API_URL}/icons`)
-  const icondata = await iconres.json()
+// MyApp.getInitialProps = async () => {
+//   const res = await fetch(`${publicRuntimeConfig.API_URL}/journals`)
+//   const data = await res.json()
+//   const wtres = await fetch(`${publicRuntimeConfig.API_URL}/web-tools`)
+//   const wtdata = await wtres.json()
+//   const navres = await fetch(`${publicRuntimeConfig.API_URL}/navigations`)
+//   const navdata = await navres.json()
+//   const projres = await fetch(`${publicRuntimeConfig.API_URL}/projects`)
+//   const projdata = await projres.json()
+//   const iconres = await fetch(`${publicRuntimeConfig.API_URL}/icons`)
+//   const icondata = await iconres.json()
 
-  return {
-      blogs: data,
-      webTools: wtdata,
-      navigation: navdata,
-      projects: projdata,
-      icon: icondata
-  }
-}
+//   return {
+//       blogs: data,
+//       webTools: wtdata,
+//       navigation: navdata,
+//       projects: projdata,
+//       icon: icondata
+//   }
+// }
